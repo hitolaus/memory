@@ -1,3 +1,10 @@
+.game-view {
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
 .back-button {
     position: absolute;
     left: 14pt;
@@ -11,26 +18,18 @@
     bottom: 14pt;
     right: 14pt;
     transform: translateX(100px);
-    transition: transform 300ms ease;
     background-color: transparent;
     border: none;
 }
 .done-button.show {
-    transform: translateX(0);
-}
-
-.GameView {
-    display: grid;
-    place-items: center;
-    height: 100vh;
-    width: 100vw;
+    animation: slideIn 300ms ease forwards;
+    animation-delay: 3s;
 }
 
 .game-board {
-    /* Move to level setup */
     display: grid;
     grid-gap: 1px;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr); /* Move to level setup */
 }
 
 @media only screen and (orientation : portrait) {
@@ -143,6 +142,11 @@
 @keyframes slideDown {
     to {
         transform: translateY(0);
+    }
+}
+@keyframes slideIn {
+    to {
+        transform: translateX(0);
     }
 }
 @keyframes fadeIn { 

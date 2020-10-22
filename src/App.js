@@ -9,6 +9,7 @@ import GameView from './Game';
 import WorldsView from './World';
 
 function App() {
+  
   return (
     <div className="App">
       <Router>

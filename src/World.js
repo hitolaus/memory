@@ -6,7 +6,7 @@ import unicorn from './assets/themes/unicorn/circle.png';
 class WorldsView extends React.Component {
     render() {
         return (
-            <div className="WorldsView" >
+            <div className="worlds-view" >
                 <WorldSelector />
             </div>
         );
@@ -16,35 +16,13 @@ class WorldsView extends React.Component {
 class WorldSelector extends React.Component {
     render() {
         return (
-            <div className="WorldSelector" >
+            <div className="world-selector" >
                 <World id="unicorn" name="Unicorn World" />
             </div>
         );
     }
 }
 
-/*
-class World extends React.Component {
-    
-
-    navigate(id) {
-        this.setState({transition: true})
-        setTimeout(() => this.props.history.push(`/${id}`), 2000);
-    }
-
-    render () {
-        return (
-            <button className={`world ${this.state.transition ? 'transition' : ''}`} 
-                    onClick={() => this.navigate(this.props.id)}>
-                <div className="name">{this.props.name}</div>
-                <div className="circle">
-                    <img src={unicorn} alt="" />
-                </div>
-            </button>
-        );
-    }
-}
-*/
 
 function World(props) {
     const history = useHistory();

@@ -1,4 +1,4 @@
-.WorldsView {
+.worlds-view {
     display: grid;
     place-items: center;
     height: 100vh;
@@ -64,10 +64,10 @@
 
 @keyframes bounceUp {
     25% {
-        transform: translateY(250px);
+        transform: translateY(250px) scale(0.7);
     }
     100% {
-        transform: translateY(-1000px);
+        transform: translateY(-1000px) scale(2.0);
     }
 }
 @keyframes fall {

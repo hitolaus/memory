@@ -8,6 +8,7 @@ export class Level {
 export class Player {
     constructor() {
         this.level = new Level();
+        this.score = 0;
     }
 
 }

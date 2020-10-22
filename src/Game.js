@@ -4,7 +4,10 @@ import './Game.css';
 import back from './assets/images/back.png';
 import forward from './assets/images/forward.png';
 import { shuffle } from './utils';
-import { Level } from './model';
+import { Level, Player } from './model';
+
+import selectSound from './assets/audio/select.wav';
+import doneSound from './assets/audio/done.wav';
 
 class GameView extends React.Component {
     constructor(props) {
@@ -19,6 +22,10 @@ class GameView extends React.Component {
     }
 
     onDone() {
+        let player = new Audio();
+        player.src = doneSound;
+        player.play();
+
         this.setState({showDone: true});
     }
 
@@ -29,7 +36,7 @@ class GameView extends React.Component {
 
     render() {
         return (
-            <div className="GameView">
+            <div className="game-view">
                 <Link className="back-button show" to="/"><img src={back} alt="Back"/></Link>
                 <button 
                     className={`done-button ${this.state.showDone ? 'show' : ''}`} 
@@ -53,6 +60,8 @@ class GameBoard extends React.Component {
         super(props);
 
         this.boardSize = props.level.boardSize;
+        this.players = [ new Player() ];
+        this.currentPlayer = 0;
 
         this.state = {
             board: this.buildBoard()
@@ -99,8 +108,17 @@ class GameBoard extends React.Component {
             this.props.onDone();
             return;
         }
-
         this.autoHide = setTimeout(() => this.hideActiveCards(board), 1500);
+
+        this.nextPlayer();
+    }
+
+    nextPlayer () {
+        let nextPlayer = this.currentPlayer + 1;
+        if (nextPlayer >= this.players.length) {
+            nextPlayer = 0;
+        }
+        this.currentPlayer = nextPlayer;
     }
 
     hideActiveCards(board, callback) {
@@ -126,6 +144,8 @@ class GameBoard extends React.Component {
             return i;
         });
         this.setState({ board: board });
+    
+        this.players[this.currentPlayer].score++;
     }
 
     isTurnOver(board) {
@@ -138,6 +158,10 @@ class GameBoard extends React.Component {
         if (board[i].active || board[i].matched) {
             return;
         }
+
+        let audioPlayer = new Audio();
+        audioPlayer.src = selectSound;
+        audioPlayer.play();
 
         if (this.isTurnOver(board)) {
             this.hideActiveCards(board, () => this.handleTurn(board, i));
