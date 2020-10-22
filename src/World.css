@@ -1,0 +1,77 @@
+.WorldsView {
+    display: grid;
+    place-items: center;
+    height: 100vh;
+}
+
+.world {
+    display: inline-block;
+    background-color: transparent;
+    border: none;
+    margin: 14pt;
+    padding: 14pt;
+    transition: transform 300ms ease;
+}
+.world:hover, .world:active  {
+    transform: scale(1.1);
+}
+
+.name {
+    font-size: 48pt;
+    padding: 4px; /* use for the stroke */
+    color: black;
+    font-weight: bold;
+    font-family: 'Bangers';
+    -webkit-text-fill-color: lightsalmon;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    text-align: center;
+    position: relative;
+    z-index: 1000;
+}
+
+.transition .name {
+    animation: bounceUp 2s ease forwards;
+}
+
+.circle {
+    animation: rotate 10s infinite;
+}
+.circle img {
+    max-width: 250px;
+}
+.transition .circle {
+    animation: fall 2s ease forwards;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(20deg);
+    }
+    50% {
+        transform: rotate(10deg);
+    }
+    75% {
+        transform: rotate(15deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes bounceUp {
+    25% {
+        transform: translateY(250px);
+    }
+    100% {
+        transform: translateY(-1000px);
+    }
+}
+@keyframes fall {
+    100% {
+        transform: translateY(1000px);
+    }
+}
