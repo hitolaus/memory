@@ -9,7 +9,7 @@
     position: absolute;
     left: 14pt;
     top: 14pt;
-    transform: translateY(-100px);
+    transform: translateY(-150px);
     animation: slideDown 300ms ease forwards;
     animation-delay: 1s;
 }
@@ -17,7 +17,7 @@
     position: absolute;
     bottom: 14pt;
     right: 14pt;
-    transform: translateX(100px);
+    transform: translateX(150px);
     background-color: transparent;
     border: none;
 }

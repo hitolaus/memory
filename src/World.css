@@ -22,7 +22,7 @@
     color: black;
     font-weight: bold;
     font-family: 'Bangers';
-    -webkit-text-fill-color: lightsalmon;
+    -webkit-text-fill-color: lightgoldenrodyellow;
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: black;
     text-align: center;
@@ -35,43 +35,49 @@
 }
 
 .circle {
-    animation: rotate 10s infinite;
+    position: relative;
 }
 .circle img {
     max-width: 250px;
 }
+.circle .elem1 {
+    position: absolute;
+    left: 75px;
+    top: 50px;
+    animation: rotate 20s linear infinite;
+}
+.circle .elem2 {
+    position: absolute;
+    right: 50px;
+    bottom: 50px;
+    animation: crotate 10s linear infinite;
+}
 .transition .circle {
     animation: fall 2s ease forwards;
 }
-
 @keyframes rotate {
-    0% {
-        transform: rotate(0deg);
-    }
-    25% {
-        transform: rotate(20deg);
-    }
-    50% {
-        transform: rotate(10deg);
-    }
-    75% {
-        transform: rotate(15deg);
-    }
     100% {
-        transform: rotate(0deg);
+        transform: rotate(360deg);
     }
 }
-
+@keyframes crotate {
+    100% {
+        transform: rotate(-360deg);
+    }
+}
 @keyframes bounceUp {
     25% {
-        transform: translateY(250px) scale(0.7);
+        transform: translateY(100px) scale(0.7);
     }
     100% {
         transform: translateY(-1000px) scale(2.0);
     }
 }
 @keyframes fall {
+    25% {
+        transform: translateY(0) scale(0.7);
+    }
     100% {
-        transform: translateY(1000px);
+        transform: translateY(1000px) scale(2.0);
     }
 }

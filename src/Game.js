@@ -6,8 +6,7 @@ import forward from './assets/images/forward.png';
 import { shuffle } from './utils';
 import { Level, Player } from './model';
 
-import selectSound from './assets/audio/select.wav';
-import doneSound from './assets/audio/done.wav';
+import AudioPlayer from './AudioPlayer';
 
 class GameView extends React.Component {
     constructor(props) {
@@ -22,9 +21,8 @@ class GameView extends React.Component {
     }
 
     onDone() {
-        let player = new Audio();
-        player.src = doneSound;
-        player.play();
+        let audioPlayer = new AudioPlayer();
+        audioPlayer.play('done');
 
         this.setState({showDone: true});
     }
@@ -62,6 +60,8 @@ class GameBoard extends React.Component {
         this.boardSize = props.level.boardSize;
         this.players = [ new Player() ];
         this.currentPlayer = 0;
+
+        this.audioPlayer = new AudioPlayer();
 
         this.state = {
             board: this.buildBoard()
@@ -145,6 +145,8 @@ class GameBoard extends React.Component {
         });
         this.setState({ board: board });
     
+        this.audioPlayer.play('match');
+
         this.players[this.currentPlayer].score++;
     }
 
@@ -159,9 +161,7 @@ class GameBoard extends React.Component {
             return;
         }
 
-        let audioPlayer = new Audio();
-        audioPlayer.src = selectSound;
-        audioPlayer.play();
+        this.audioPlayer.play('select');
 
         if (this.isTurnOver(board)) {
             this.hideActiveCards(board, () => this.handleTurn(board, i));

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useHistory } from "react-router-dom";
 import './World.css'
 import unicorn from './assets/themes/unicorn/circle.png';
+import flower1 from './assets/themes/unicorn/flower1.png';
+import flower2 from './assets/themes/unicorn/flower2.png';
 
 class WorldsView extends React.Component {
     render() {
@@ -39,6 +41,8 @@ function World(props) {
             <div className="name">{props.name}</div>
             <div className="circle">
                 <img src={unicorn} alt="" />
+                <img className="elem1" src={flower1} alt="" />
+                <img className="elem2" src={flower2} alt="" />
             </div>
         </button>
     );
